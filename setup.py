@@ -9,13 +9,14 @@ except ImportError:
 
 setup(
     name='uaddress',
+    packages=['uaddress'],
     description='Parse Ukraine address on types',
     version='1.0.0',
     author='Evgen Kytonin',
     license='MIT',
+    keywords=['nlp', 'ukrain', 'address', 'research', 'parsing'],
     url='https://github.com/martinjack/uaddress',
-    packages=['uaddress'],
-    package_data={'uaddress': ['uaaddr.crfsuite']},
+    package_data={'uaddress': ['uaddr.crfsuite']},
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',

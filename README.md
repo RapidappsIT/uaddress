@@ -2,6 +2,8 @@
 # UAddress - NLP Парсер украинских адресов
 
 # Описание
+[![PyPI version](https://badge.fury.io/py/uaddress.svg)](https://badge.fury.io/py/uaddress)
+
 Разборка адреса на типы. Адаптация библиотеки [usaddress](https://github.com/datamade/usaddress) под украинские адреса 
 
 > Read this in other language: [English](README.en.md), [Русский](README.md), [Український](README.ua.md)
