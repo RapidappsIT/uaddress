@@ -8,44 +8,21 @@ except ImportError:
     )
 
 setup(
-    version='0.5.10',
-    url='https://github.com/datamade/usaddress',
-    description='Parse US addresses using conditional random fields',
-    name='usaddress',
-    packages=['usaddress'],
-    package_data={'usaddress': ['usaddr.crfsuite']},
-    license='The MIT License: http://www.opensource.org/licenses/mit-license.php',
-    install_requires=['python-crfsuite>=0.7',
-                      'future>=0.14',
-                      'probableparsing'],
+    name='uaddress',
+    description='Parse Ukraine address on types',
+    version='1.0.0',
+    author='Evgen Kytonin',
+    license='MIT',
+    url='https://github.com/martinjack/uaddress',
+    packages=['uaddress'],
+    package_data={'uaddress': ['uaaddr.crfsuite']},
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'Intended Audience :: Science/Research',
         'License :: OSI Approved :: MIT License',
-        'Natural Language :: English',
-        'Operating System :: MacOS :: MacOS X',
-        'Operating System :: Microsoft :: Windows',
-        'Operating System :: POSIX',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 2 :: Only',
         'Topic :: Software Development :: Libraries :: Python Modules',
         'Topic :: Scientific/Engineering',
-        'Topic :: Scientific/Engineering :: Information Analysis'],
-    long_description="""
-    usaddress is a python library for parsing unstructured address strings into
-    address components, using advanced NLP methods.
-
-    From the python interpreter:
-
-    >>> import usaddress
-    >>> usaddress.parse('123 Main St. Suite 100 Chicago, IL')
-    [('123', 'AddressNumber'),
-     ('Main', 'StreetName'),
-     ('St.', 'StreetNamePostType'),
-     ('Suite', 'OccupancyType'),
-     ('100', 'OccupancyIdentifier'),
-     ('Chicago,', 'PlaceName'),
-     ('IL', 'StateName')]
-    """
+        'Topic :: Scientific/Engineering :: Information Analysis'
+    ]
 )
