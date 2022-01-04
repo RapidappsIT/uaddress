@@ -8,7 +8,7 @@ Parse the address into types. Library adaptation [usaddress](https://github.com/
 
 # Requirements
 * python3
-* [parserator](https://github.com/martinjack/parserator)
+* [jackmartin.parserator](https://github.com/martinjack/parserator)
 
 # Install
 ```sh

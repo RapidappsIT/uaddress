@@ -8,7 +8,7 @@
 
 # Вимоги
 * python3
-* [parserator](https://github.com/martinjack/parserator)
+* [jackmartin.parserator](https://github.com/martinjack/parserator)
 
 # Встановлення
 ```sh

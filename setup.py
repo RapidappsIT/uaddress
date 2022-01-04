@@ -11,7 +11,7 @@ setup(
     name='uaddress',
     packages=['uaddress'],
     description='Parse Ukraine address on types',
-    version='1.0.0',
+    version='1.0.1',
     author='Evgen Kytonin',
     license='MIT',
     keywords=['nlp', 'ukrain', 'address', 'research', 'parsing'],
