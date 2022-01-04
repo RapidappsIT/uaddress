@@ -1,6 +1,4 @@
 ![header](doc/header.png)
-# UAddress - NLP Парсер українських адресів
-
 # Опис
 [![PyPI version](https://badge.fury.io/py/uaddress.svg)](https://badge.fury.io/py/uaddress)
 
