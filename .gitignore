@@ -3,3 +3,4 @@ dist/
 uaddress.egg-info
 uaddress/__pycache__
 trainingunlabeled_raw.csv
+CHANGELOG.md

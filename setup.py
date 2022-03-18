@@ -10,11 +10,11 @@ except ImportError:
 setup(
     name='uaddress',
     packages=['uaddress'],
-    description='Parse Ukraine address on types',
-    version='1.0.1',
+    description='Ukrainian address parser',
+    version='1.0.2',
     author='Evgen Kytonin',
     license='MIT',
-    keywords=['nlp', 'ukrain', 'address', 'research', 'parsing'],
+    keywords=['nlp', 'ukraine', 'address', 'research', 'parsing'],
     url='https://github.com/martinjack/uaddress',
     package_data={'uaddress': ['uaddr.crfsuite']},
     classifiers=[

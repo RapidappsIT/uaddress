@@ -1,4 +1,3 @@
-
 from __future__ import print_function
 from builtins import zip
 from builtins import str
@@ -76,8 +75,8 @@ TYPES = {
     "пос", "пос.", "смт", "смт.", "с.м.т", "пгт", "п г т", "пгт.", "село", "селище", "поселок", "с-ще",
     # STREET    
     "вул", "вул.", "вулиця", "ул", "ул.", "улица", "влу.", "в.", "вулю",
-    "пров", "пров.", "провулок", "пер", "пер.", "переулок", "прос", "провул", "прв.",
-    "бул", "бул.", "б-р", "бр", "бр.", "бур", "бур.", "бульвар", "бульв.",
+    "пров", "пров.", "провулок", "пер", "пер.", "переулок", "прос", "провул", "прв.", "перевуло",
+    "бул", "бул.", "б-р", "бр", "бр.", "бур", "бур.", "бульвар", "бульв.", "бул-р.",
     "просп", "просп.", "прт", "прт.", "прокт", "прокт.", "пр", "пр.", "п-т", "п-т.", "п-рт.", "проспект", "п-т", "пр-кт", "пр-к",
     "ж\м" , "масив", "массив", "житловий масив", "жилой массив", "ж.м.",
     "ш.", "шосе", "шоссе",
@@ -172,34 +171,41 @@ def tokenize(address_string):
 
 def unMergeType(address):
 
+    ##
     # Unmerge string, if exists housenumber + apartment type
     #
-    if re.findall(r'\d{1,}[а-яА-ЯіІїЇґҐ]{1}[а-яА-ЯіІїЇґҐ]{1}\s', address):
-        address = re.sub(r'(?<=\d)(?=[а-яА-ЯіІїЇґҐ]+\s)', ' ', address)
+    if re.findall(r'\d{1,}[a-zA-Zа-яА-ЯіІїЇґҐ]{1}[a-zA-Zа-яА-ЯіІїЇґҐ]{1}\s', address):
+        address = re.sub(r'(?<=\d)(?=[a-zA-Zа-яА-ЯіІїЇґҐ]+\s)', ' ', address)
 
     if re.findall(r'кв\s\d+$', address):
         address = re.sub(r'(?=кв(?:\.|\.?)\s\d+)', ' ', address)
     
-    if re.findall(r'(?<=\d[а-яА-ЯіІїЇґҐ]{1})(?=[а-яА-ЯіІїЇґҐ]\.\d\s)', address):
-        address = re.sub(r'(?<=\d[а-яА-ЯіІїЇґҐ]{1})(?=[а-яА-ЯіІїЇґҐ]\.\d\s)', ' ', address)
+    if re.findall(r'(?<=\d[a-zA-Zа-яА-ЯіІїЇґҐ]{1})(?=[a-zA-Zа-яА-ЯіІїЇґҐ]\.\d\s)', address):
+        address = re.sub(r'(?<=\d[a-zA-Zа-яА-ЯіІїЇґҐ]{1})(?=[a-zA-Zа-яА-ЯіІїЇґҐ]\.\d\s)', ' ', address)
 
-    if re.findall(r'(?<=\d)(?=[а-яА-ЯіІїЇґҐ]{3,}(?:\s|\.\d+$))', address):
-        address = re.sub(r'(?<=\d)(?=[а-яА-ЯіІїЇґҐ]{3,}(?:\s|\.\d+$))', ' ', address)
+    if re.findall(r'(?<=\d)(?=[a-zA-Zа-яА-ЯіІїЇґҐ]{3,}(?:\s|\.\d+$))', address):
+        address = re.sub(r'(?<=\d)(?=[a-zA-Zа-яА-ЯіІїЇґҐ]{3,}(?:\s|\.\d+$))', ' ', address)
 
-    if re.findall(r'\d+[а-яА-ЯіІїЇґҐ]\.\d+', address):
-        address = re.sub(r'(?<=\d)(?=[а-яА-ЯіІїЇґҐ]\.\d+)', ' ', address)
+    if re.findall(r'\d+[a-zA-Zа-яА-ЯіІїЇґҐ]\.\d+', address):
+        address = re.sub(r'(?<=\d)(?=[a-zA-Zа-яА-ЯіІїЇґҐ]\.\d+)', ' ', address)
 
-    if re.findall(r'(?<=[а-яА-ЯіІїЇґҐ]\.)(?=\d+(?:\s|\,))', address):
-        address = re.sub(r'(?<=[а-яА-ЯіІїЇґҐ]\.)(?=\d+(?:\s|\,))', ' ', address)
+    if re.findall(r'(?<=[a-zA-Zа-яА-ЯіІїЇґҐ]\.)(?=\d+(?:\s|\,))', address):
+        address = re.sub(r'(?<=[a-zA-Zа-яА-ЯіІїЇґҐ]\.)(?=\d+(?:\s|\,))', ' ', address)
 
-    if re.findall(r'[а-яА-ЯіІїЇґҐ]{1,}\s[а-яА-ЯіІїЇґҐ]{1,}\d\s', address):
-        address = re.sub(r'(?<=[а-яА-ЯіІїЇґҐ])(?=\d\s)', ' ', address)
+    if re.findall(r'[a-zA-Zа-яА-ЯіІїЇґҐ]{1,}\s[a-zA-Zа-яА-ЯіІїЇґҐ]{1,}\d\s', address):
+        address = re.sub(r'(?<=[a-zA-Zа-яА-ЯіІїЇґҐ])(?=\d\s)', ' ', address)
 
     if re.findall(r'(?<=\d{5})', address):
         address = re.sub(r'(?<=\d{5})', ' ', address)
 
     if re.findall(r'\.(?!\s)', address):
         address = re.sub(r'\.(?!\s)', '. ', address)
+
+    ##
+    # ADDING SPACE BEFORE BRACKET
+    #
+    if re.findall(r'(?<=[a-zA-Zа-яА-ЯіІїЇґҐ])\(', address):
+        address = re.sub(r'(?<=[a-zA-Zа-яА-ЯіІїЇґҐ])\(', ' (', address)
 
     return address
 
