@@ -13,6 +13,7 @@ setup(
     description='Ukrainian address parser',
     version='1.0.3',
     author='Evgen Kytonin',
+    author_email='killfess@gmail.com',
     license='MIT',
     keywords=['nlp', 'ukraine', 'address', 'research', 'parsing'],
     url='https://github.com/RapidappsIT/uaddress',
