@@ -15,7 +15,7 @@ setup(
     author='Evgen Kytonin',
     license='MIT',
     keywords=['nlp', 'ukraine', 'address', 'research', 'parsing'],
-    url='https://github.com/martinjack/uaddress',
+    url='https://github.com/RapidappsIT/uaddress',
     package_data={'uaddress': ['uaddr.crfsuite']},
     classifiers=[
         'Development Status :: 5 - Production/Stable',
