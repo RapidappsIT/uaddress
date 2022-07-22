@@ -81,6 +81,8 @@ python3 example.py
 | RoomType                  | Тип комнаты                                   |
 | Room                      | Комната                                       |
 | Sector                    | Сектор                                        |
+| EntranceType              | Тип подъезда                                  |
+| Entrance                  | Номер подъезда                                |
 | FloorType                 | Тип этажа                                     |
 | Floor                     | Этаж                                          |
 | PostCode                  | Индекс                                        |

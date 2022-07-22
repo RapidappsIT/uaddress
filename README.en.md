@@ -81,6 +81,8 @@ python3 example.py
 | RoomType                  | Type room                                     |
 | Room                      | Room                                          |
 | Sector                    | Sector                                        |
+| EntranceType              | Type entrance                                 |
+| Entrance                  | Entrance                                      |
 | FloorType                 | Type floor                                    |
 | Floor                     | Floor                                         |
 | PostCode                  | Index                                         |
