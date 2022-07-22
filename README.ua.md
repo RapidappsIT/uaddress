@@ -1,4 +1,4 @@
-![header](doc/header.png)
+![header](https://github.com/RapidappsIT/uaddress/raw/master/doc/header.png)
 # Опис
 [![PyPI version](https://badge.fury.io/py/uaddress.svg)](https://badge.fury.io/py/uaddress)
 
@@ -45,13 +45,13 @@ parserator label trainig/raw.csv training/data.xml uaddress --modelfile anotherp
 | uaddress/uaddr.crfsuite   | NLP модель                                    |
 
 # Приклади
-![example1](doc/example1.gif)
+![example1](https://github.com/RapidappsIT/uaddress/raw/master/doc/example1.gif)
 
 ## Приклад скрипту
 ```sh 
 python3 example.py
 ```
-![example2](doc/example2.gif)
+![example2](https://github.com/RapidappsIT/uaddress/raw/master/doc/example2.gif)
 
 # Типы
 | Назва                     | Опис                                          |

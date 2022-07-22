@@ -44,6 +44,8 @@ LABELS = [
     'RoomType',
     'Room',
     'Sector',
+    'EntranceType',
+    'Entrance',
     'FloorType',
     'Floor',
     'PostCode',
@@ -115,7 +117,11 @@ TYPES = {
     # ROOM
     "прим.",
     # SECTION
-    "секція"
+    "секція",
+    # ENTRANCE
+    "підʼїзд", "подъезд",
+    # FLOOR
+    "поверх", "этаж"
 
 }
 
