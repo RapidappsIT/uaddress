@@ -6,6 +6,9 @@ import string
 import re
 import argparse
 
+from .labels import LABELS
+from .types import TYPES
+
 try:
     from collections import OrderedDict
 except ImportError:
@@ -15,115 +18,12 @@ import warnings
 import pycrfsuite
 import probableparsing
 
-# The address components 
-
-LABELS = [
-
-    'Country',
-    'RegionType',
-    'Region',
-    'CountyType',
-    'County',
-    'SubLocalityType',
-    'SubLocality',
-    'LocalityType',
-    'Locality',
-    'StreetType',
-    'Street',
-    'HousingType',
-    'Housing',
-    'HostelType',
-    'Hostel',
-    'HouseNumberType',
-    'HouseNumber',
-    'HouseNumberAdditionally',
-    'SectionType',
-    'Section',
-    'ApartmentType',
-    'Apartment',
-    'RoomType',
-    'Room',
-    'Sector',
-    'EntranceType',
-    'Entrance',
-    'FloorType',
-    'Floor',
-    'PostCode',
-    'Manually',
-    'NotAddress',
-    'Comment',
-    'AdditionalData'
-    
-]
-
 PARENT_LABEL = 'AddressString'
 GROUP_LABEL = 'AddressCollection'
 
 MODEL_FILE = 'uaddr.crfsuite'
 MODEL_FILES = ''
 backupModel = False
-
-TYPES = {
-
-    # REGION
-    "обл", "обл.", "область",
-    # CITY
-    "м", "м.", "місто", "г", "г.", "город",
-    # DISTRICT
-    "р-н", "р-н.", "рн", "рн.", "р-он", "район",
-    # MICRODISTRICT
-    "мікр", "мікр.", "мн", "мр", "мкрн", "мкр", "мікрорайон", "микр", "микр.", "микрорайон", "м-н",
-    # VILLAGE
-    "пос", "пос.", "смт", "смт.", "с.м.т", "пгт", "п г т", "пгт.", "село", "селище", "поселок", "с-ще",
-    # STREET    
-    "вул", "вул.", "вулиця", "ул", "ул.", "улица", "влу.", "в.", "вулю",
-    "пров", "пров.", "провулок", "пер", "пер.", "переулок", "прос", "провул", "прв.", "перевуло", "про",
-    "бул", "бул.", "б-р", "бр", "бр.", "бур", "бур.", "бульвар", "бульв.", "бул-р.",
-    "просп", "просп.", "прт", "прт.", "прокт", "прокт.", "пр", "пр.", "п-т", "п-т.", "п-рт.", "проспект", "п-т", "пр-кт", "пр-к",
-    "ж\м" , "масив", "массив", "житловий масив", "жилой массив", "ж.м.",
-    "ш.", "шосе", "шоссе",
-    "алея", "аллея",
-    "майд", "майд.", "майдан",
-    "розвилка", "развилка",
-    "узвіз", "спуск",
-    "проїзд", "проезд",
-    "дорога",
-    "наб", "наб.", "набер.", "набережна", "набережная",
-    "парк",
-    "сквер",
-    "тупик",
-    "прохід", "проход",
-    "ст", "ст.", "станція", "станция",
-    "остр", "остр.", "острів", "остров",
-    "шлях", "путь",
-    "гай", "роща", 
-    "пл", "пл.", "площа", "площадь",
-    "в'їзд", "въезд",
-    "лінія", "линия",
-    "траса", "трасса",
-    "урочище",
-    "шахта",
-    "хутір", "хутор",
-    "роз'їзд", "разъезд",
-    "квартал",
-    # HOUSING
-    "корп.", "корп", "корпус",
-    # HOSTEL
-    "гурт", "гурт.", "гуртожиток", "общ", "общ.", "общежитие",
-    # HOUSE
-    "буд.", "будинок", "дом", "д.", "б.",
-    # APARTMENT
-    "кв.", "квартира",
-    # ROOM
-    "прим.",
-    # SECTION
-    "секція",
-    # ENTRANCE
-    "підʼїзд", "подъезд",
-    # FLOOR
-    "поверх", "этаж"
-
-}
 
 regex_tokens = r"\w+(?:\s|\.?)\-(?:\s)\w+|\([0-9а-яА-ЯіІїЇґҐ].*?\)|\(*\b[^\s,;#&]+[.)]*|\/\d+|[№][0-9]*"
 
@@ -166,7 +66,7 @@ def tokenize(address_string):
     re_tokens = re.compile(regex_tokens, re.VERBOSE | re.UNICODE)
 
     address_string = re.sub(r'\s+', ' ', address_string)
-    address_string = unMergeType(address_string)
+    address_string = fixString(address_string)
 
     tokens = re_tokens.findall(address_string)
   
@@ -175,7 +75,7 @@ def tokenize(address_string):
 
     return tokens
 
-def unMergeType(address):
+def fixString(address):
 
     ##
     # Unmerge string, if exists housenumber + apartment type
@@ -212,6 +112,18 @@ def unMergeType(address):
     #
     if re.findall(r'(?<=[a-zA-Zа-яА-ЯіІїЇґҐ])\(', address):
         address = re.sub(r'(?<=[a-zA-Zа-яА-ЯіІїЇґҐ])\(', ' (', address)
+
+    ##
+    # REMOVE SPACE AFTER HYPHEN
+    #
+    if re.findall(r'\-\s+', address):
+        address = re.sub('\-\s+', '-', address)
+
+    ##
+    # ADD SPACE BEFORE AND AFTER BRACKET
+    #
+    if re.findall(r'(?=\()|(?<=\))', address):
+        address = re.sub('(?=\()|(?<=\))', ' ', address)
 
     return address
 
