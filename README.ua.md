@@ -53,7 +53,7 @@ python3 example.py
 ```
 ![example2](https://github.com/RapidappsIT/uaddress/raw/master/doc/example2.gif)
 
-# Типы
+# Типи
 | Назва                     | Опис                                          |
 | :-------------            | :-------------                                |
 | Country                   | Країна                                        |
