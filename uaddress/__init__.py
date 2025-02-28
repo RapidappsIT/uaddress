@@ -89,6 +89,9 @@ def fixString(address):
     if re.findall(r'(?<=\d[a-zA-Zа-яА-ЯіІїЇґҐ]{1})(?=[a-zA-Zа-яА-ЯіІїЇґҐ]\.\d\s)', address):
         address = re.sub(r'(?<=\d[a-zA-Zа-яА-ЯіІїЇґҐ]{1})(?=[a-zA-Zа-яА-ЯіІїЇґҐ]\.\d\s)', ' ', address)
 
+    if re.findall(r'[0-9][a-zA-Zа-яА-ЯіІїЇґҐ]блок', address):
+        address = re.sub(r'(?<=[0-9][a-zA-Zа-яА-ЯіІїЇґҐ])(?=блок)', ' ', address)
+
     if re.findall(r'(?<=\d)(?=[a-zA-Zа-яА-ЯіІїЇґҐ]{3,}(?:\s|\.\d+$))', address):
         address = re.sub(r'(?<=\d)(?=[a-zA-Zа-яА-ЯіІїЇґҐ]{3,}(?:\s|\.\d+$))', ' ', address)
 
@@ -106,6 +109,9 @@ def fixString(address):
 
     if re.findall(r'\.(?!\s)', address):
         address = re.sub(r'\.(?!\s)', '. ', address)
+
+    if re.findall(r'\№кв', address):
+        address = re.sub(r'(?<=\№)(?=кв)', ' ', address)
 
     ##
     # ADDING SPACE BEFORE BRACKET

@@ -11,7 +11,7 @@ setup(
     name='uaddress',
     packages=['uaddress'],
     description='Ukrainian address parser',
-    version='1.0.8',
+    version='1.0.9',
     author='Evgen Kytonin',
     author_email='killfess@gmail.com',
     license='MIT',
