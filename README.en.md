@@ -4,7 +4,7 @@
 
 Parse the address into types. Library adaptation [usaddress](https://github.com/datamade/usaddress) under Ukrainian address
 
-> Read this in other language: [English](README.en.md), [Русский](README.md), [Український](README.ua.md)
+> Read this in other language: [Український](README.md), [English](README.en.md), [Русский](README.ru.md)
 
 # Requirements
 * python3

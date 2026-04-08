@@ -1,5 +1,3 @@
-# The address components 
-
 LABELS = [
 
     'Country',
@@ -26,6 +24,7 @@ LABELS = [
     'Apartment',
     'RoomType',
     'Room',
+    'SectorType',
     'Sector',
     'EntranceType',
     'Entrance',
